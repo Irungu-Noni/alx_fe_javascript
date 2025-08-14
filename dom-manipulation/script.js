@@ -159,12 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("newQuoteCategory").value = "";
 
         saveQuotes();
-
         populateCategories();
     };
 
     
-    async function fetchQuotes() {
+    async function fetchQuotesFromServer() {
         try {
             const response = await fetch('https://api.quotable.io/quotes?limit=100');
             if (!response.ok) {
