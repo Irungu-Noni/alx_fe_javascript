@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-async function syncQuotes() {
+async function fetchQuotesFromServer() {
     try {
         const newQuote = {
             title: "New Quote from Server",
