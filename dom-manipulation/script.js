@@ -185,9 +185,9 @@ async function fetchQuotesFromServer() {
 
         const addedQuote = await response.json();
         console.log('New Quote added successfully:', addedQuote);
-        alert('New Quote successfully sent to server!');
+        alert('Quotes synced with server!');
     } catch (error) {
         console.error('Error adding new quote:', error);
-        alert('Failed to add new quote. Please try again later.');
-    }
-}
+        alert('Failed to sync new quote with server. Please try again later.');
+    };
+};
