@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const quoteButton = document.getElementById('newQuote');
-    quoteButton.addEventListener('click', showRandomQuote);
+    quoteButton.addEventListener('click', displayRandomQuote);
 
     const dynamicQuotes = [
         { text: "No human is limited.", category: "Inspirational"},
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "Great things never come from comfort zones.", category: "Motivation"}  
     ];
 
-    function showRandomQuote() {
+    function displayRandomQuote() {
         const randomIndex = Math.floor(Math.random() * dynamicQuotes.length);
         const pickedQuote = dynamicQuotes[randomIndex];
     
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Show a random quote on page load
-    showRandomQuote();
+    displayRandomQuote();
 
     createAddQuoteForm();
 });
