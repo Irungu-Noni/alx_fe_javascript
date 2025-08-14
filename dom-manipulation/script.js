@@ -13,12 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "Great things never come from comfort zones.", category: "Motivation"}  
     ];
 
-    function displayRandomQuote() {
+    function showRandomQuote() {
         const randomIndex = Math.floor(Math.random() * dynamicQuotes.length);
         const pickedQuote = dynamicQuotes[randomIndex];
     
         const quoteElement = document.getElementById('quoteDisplay');
-        quoteElement.textContent = `"${pickedQuote.text}" - ${pickedQuote.category}`;
+        quoteElement.innerHTML = `<p>"${pickedQuote.text}"</p>
+        <p><em>${pickedQuote.category}</em></p>`;
     };
 
     function createAddQuoteForm() {
