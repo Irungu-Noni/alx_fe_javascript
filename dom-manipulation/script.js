@@ -161,47 +161,33 @@ document.addEventListener('DOMContentLoaded', () => {
         saveQuotes();
         populateCategories();
     };
-
-    
-    async function fetchQuotesFromServer() {
-        try {
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const fetchQuoteData = await response.json();
-
-            const serverQuotes = fetchQuoteData.map(post => ({
-                text: post.title,
-                category: 'Server'
-            }));
-            dynamicQuotes = serverQuotes;
-
-            saveQuotes();
-            populateCategories();
-            displayQuotes(dynamicQuotes);
-
-            alert('Quotes synced successfully!');
-            console.log('Quotes synced successfully with the server!:', dynamicQuotes);
-        } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
-            alert('Failed to fetch quotes. Please try again later.');
-        }
-    }
 });
 
-/*     function populateCategories() {
-        const categorySelect = document.getElementById('categoryFilter');
+async function syncQuotes() {
+    try {
+        const newQuote = {
+            title: "New Quote from Server",
+            body: "This is a dynamically added quote from the server.",
+            userId: 1
+        };
 
-        const categories = new Set(dynamicQuotes.map(quote => quote.category));
-    
-        categorySelect.innerHTML = '<option value="all">All Categories</option>'; // Reset options
-
-        categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category;
-            option.textContent = category;
-            categorySelect.appendChild(option);
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newQuote)
         });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const addedQuote = await response.json();
+        console.log('New Quote added successfully:', addedQuote);
+        alert('New Quote successfully sent to server!');
+    } catch (error) {
+        console.error('Error adding new quote:', error);
+        alert('Failed to add new quote. Please try again later.');
     }
- */
+}
